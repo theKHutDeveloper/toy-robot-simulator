@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Entry point for the Toy Robot Simulator.
+#
+# Reads commands from the files given as arguments, or from standard
+# input if no files are given, and prints the output of any REPORT commands.
+#
+# Usage:
+#   bin/toy_robot commands.txt
+#   bin/toy_robot            (type commands, then press Ctrl+D to finish)
+
+require_relative "../lib/simulator"
+
+simulator = Simulator.new
+
+ARGF.each_line do |line|
+  output = simulator.execute(line)
+  puts output if output
+end
